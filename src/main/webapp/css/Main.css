@@ -56,6 +56,18 @@ img {
   color: #FD7014;
 }
 
+.ta-c {
+  text-align: center;
+}
+
+.ta-l {
+  text-align: left;
+}
+
+.ta-r {
+  text-align: right;
+}
+
 /* Form Styles */
 .login-form input, .register-form input {
   color: #393E46;
@@ -299,6 +311,48 @@ div.item-desc form input[type=submit] {
 div.item-desc form input[type=submit]:hover {
   color: #EEEEEE;
   background-color: #393E46;
+}
+
+/* Reservation Page Styles */
+table.items-table {
+  width: 100%;
+  padding: 4rem 0;
+  border-collapse: collapse;
+}
+table.items-table thead tr th, table.items-table tfoot tr td {
+  padding: 1rem;
+  text-align: center;
+}
+table.items-table tbody tr td {
+  text-align: center;
+  padding: 1rem;
+  border-bottom: 1px dashed #393E46;
+}
+table.items-table thead, table.items-table tfoot tr td {
+  background-color: #393E46;
+  color: #EEEEEE;
+}
+table.items-table tfoot tr th {
+  background-color: #F05454;
+  color: #EEEEEE;
+  text-align: center;
+}
+table.items-table svg {
+  width: 2rem;
+  text-align: center;
+  transition: 0.2s all ease-in-out;
+}
+table.items-table .edit {
+  fill: #222831;
+}
+table.items-table .edit:hover {
+  fill: #30475E;
+}
+table.items-table .delete {
+  fill: #F05454;
+}
+table.items-table .delete:hover {
+  fill: #FD7014;
 }
 
 /*# sourceMappingURL=Main.css.map */

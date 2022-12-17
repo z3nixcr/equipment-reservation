@@ -6,7 +6,7 @@
             </div>
             <div class="main-header-content">
                 <div><a href="#">|</a></div>
-                <div><a href="#">My Reservations</a></div>
+                <div><a href="${pageContext.request.contextPath}/ServletReservation?action=display">My Reservations</a></div>
                 <div><a href="#">|</a></div>
             </div>
         </div>

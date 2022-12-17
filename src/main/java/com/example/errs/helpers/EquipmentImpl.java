@@ -17,7 +17,7 @@ import static com.example.errs.utils.MySQLConn.getConnection;
 public class EquipmentImpl implements EquipmentDAO {
     private Connection connection;
     private static final String SELECT = "SELECT * FROM equipment";
-    private static final String UPDATE = "UPDATE equipment SET quantity = ?, availability = ? WHERE id_equipment = ?";
+    private static final String UPDATE = "UPDATE equipment SET stock = ?, availability = ? WHERE id_equipment = ?";
 
     // Constructors
     public EquipmentImpl() {
@@ -90,6 +90,7 @@ public class EquipmentImpl implements EquipmentDAO {
             pstm = conn.prepareStatement(UPDATE);
             pstm.setInt(1, equipment.getInStock());
             pstm.setBoolean(2, equipment.isAvailability());
+            pstm.setInt(3, equipment.getIdEquipment());
 
             pstm.executeUpdate();
         } finally {

@@ -54,6 +54,15 @@ img {
     color: $orange;
   }
 }
+.ta-c {
+  text-align: center;
+}
+.ta-l {
+  text-align: left;
+}
+.ta-r {
+  text-align: right;
+}
 
 /* Form Styles */
 .login-form, .register-form {
@@ -311,6 +320,55 @@ div.item-desc {
         color: $grey;
         background-color: $black-grey;
       }
+    }
+  }
+}
+
+/* Reservation Page Styles */
+table.items-table {
+  width: 100%;
+  padding: 4rem 0;
+  border-collapse: collapse;
+
+  thead tr th, tfoot tr td {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  tbody tr td {
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 1px dashed $black-grey;
+  }
+
+  thead, tfoot tr td {
+    background-color: $black-grey;
+    color: $grey;
+  }
+
+  tfoot tr th {
+    background-color: #F05454;
+    color: $grey;
+    text-align: center;
+  }
+
+  svg {
+    width: 2rem;
+    text-align: center;
+    transition: .2s all ease-in-out;
+  }
+
+  .edit {
+    fill: $black;
+    &:hover {
+      fill: #30475E;
+    }
+  }
+
+  .delete {
+    fill: #F05454;
+    &:hover {
+      fill: $orange;
     }
   }
 }

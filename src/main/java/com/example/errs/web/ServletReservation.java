@@ -22,7 +22,32 @@ import java.util.List;
 public class ServletReservation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
 
+        switch (action) {
+            case "display":
+                displayReservations(request, response);
+                break;
+
+        }
+    }
+
+    private void displayReservations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+
+        try {
+            List<Reservation> items = new ReservationImpl().findAll(user);
+            float total = 0;
+            for (Reservation res : items) {
+                total += res.getTotalPrice();
+            }
+            session.setAttribute("items", items);
+            session.setAttribute("total", total);
+            request.getRequestDispatcher("pages/users/reservation.jsp").forward(request, response);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -60,16 +85,23 @@ public class ServletReservation extends HttpServlet {
                 session.setAttribute("error_reserve", error_reserve);
                 Reservation reservation = new Reservation(user.getIdUser(), item.getIdEquipment(), quantity, fDate, tDate);
                 reservationDAO.process(reservation);
-                conn.commit();
                 item.setInStock(item.getInStock() - quantity);
                 if (item.getInStock() <= 0) {
                     item.setAvailability(false);
                     item.setInStock(0);
                 }
-
+                equipmentDAO.update(item);
+                conn.commit();
+                List<Reservation> items = reservationDAO.findAll(user);
+                float total = 0;
+                for (Reservation res : items) {
+                    total += res.getTotalPrice();
+                }
+                session.setAttribute("items", items);
+                session.setAttribute("total", total);
                 List<Equipment> equipmentList = equipmentDAO.findAll();
                 session.setAttribute("equipmentList", equipmentList);
-                request.getRequestDispatcher("pages/users/main_page.jsp");
+                request.getRequestDispatcher("pages/users/main_page.jsp").forward(request, response);
             }
         } catch (ClassNotFoundException | SQLException e) {
             try {

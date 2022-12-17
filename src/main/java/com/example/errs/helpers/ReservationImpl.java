@@ -6,6 +6,7 @@ import com.example.errs.entities.Reservation;
 import com.example.errs.entities.User;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
@@ -111,10 +112,14 @@ public class ReservationImpl implements ReservationDAO {
             float price = rs.getFloat("price");
             Date fDate = rs.getDate("from_date");
             Date tDate = rs.getDate("to_date");
-            float total = ChronoUnit.DAYS.between((Temporal) fDate, (Temporal) tDate) * price * quantity;
+            LocalDate date1 = fDate.toLocalDate();
+            LocalDate date2 = tDate.toLocalDate();
+            float total = ChronoUnit.DAYS.between(date1, date2) * price * quantity;
 
             Reservation reservation = new Reservation(idRes, idUser, idEquip, equipment,
                     uName, email, phone, total, fDate, tDate);
+            reservation.setQuantity(quantity);
+            reservation.setPrice(price);
 
             reservations.add(reservation);
         }

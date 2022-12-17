@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Main</title>
+    <title>Add Item</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Main.css">
 </head>
 <body>

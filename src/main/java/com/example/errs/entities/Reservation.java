@@ -7,6 +7,7 @@ public class Reservation implements Serializable {
     private int idReservation;
     private int idUser;
     private int idEquipment;
+    private float price;
     private int quantity;
     private String equipmentName;
     private String userName;
@@ -132,5 +133,13 @@ public class Reservation implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }
