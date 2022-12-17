@@ -23,6 +23,8 @@ public class UserController extends HttpServlet {
         String action = request.getParameter("action");
         switch (action) {
             case "toLogin":
+
+            case "logout":
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
 

@@ -29,7 +29,87 @@ public class ServletReservation extends HttpServlet {
                 displayReservations(request, response);
                 break;
 
+            case "edit":
+                goToEditItemRented(request, response);
+                break;
+
+            case "delete":
+                deleteItemRented(request, response);
+                break;
+
+            case "main":
+                request.getRequestDispatcher("pages/users/main_page.jsp").forward(request, response);
+                break;
         }
+    }
+
+    private void goToEditItemRented(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        Connection conn = null;
+        try {
+            conn = MySQLConn.getConnection();
+            if (conn.getAutoCommit())
+                conn.setAutoCommit(false);
+            EquipmentDAO equipmentDAO = new EquipmentImpl(conn);
+            Reservation item = new ReservationImpl().findOne(new Reservation(id));
+            Equipment e = equipmentDAO.findOne(new Equipment(item.getIdEquipment()));
+            e.setInStock(e.getInStock() + item.getQuantity());
+            equipmentDAO.update(e);
+
+            session.setAttribute("item", item);
+            session.setAttribute("equipment", e);
+            request.getRequestDispatcher("pages/users/edit.jsp").forward(request, response);
+            conn.commit();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void deleteItemRented(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        Connection connection = null;
+
+        try {
+            connection = MySQLConn.getConnection();
+            if (connection.getAutoCommit())
+                connection.setAutoCommit(false);
+            ReservationDAO reservationDAO = new ReservationImpl(connection);
+            EquipmentDAO equipmentDAO = new EquipmentImpl(connection);
+            Reservation res = reservationDAO.findOne(new Reservation(id));
+            reservationDAO.delete(res);
+            Equipment item = equipmentDAO.findOne(new Equipment(res.getIdEquipment()));
+            item.setInStock(item.getInStock() + res.getQuantity());
+            item.setAvailability(true);
+            prepareDao(session, user, connection, reservationDAO, equipmentDAO, item);
+            request.getRequestDispatcher("pages/users/reservation.jsp").forward(request, response);
+
+        } catch (ClassNotFoundException | SQLException e) {
+            try {
+                assert connection != null;
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void prepareDao(HttpSession session, User user, Connection connection, ReservationDAO reservationDAO, EquipmentDAO equipmentDAO, Equipment item) throws SQLException {
+        equipmentDAO.update(item);
+        connection.commit();
+
+        List<Reservation> items = reservationDAO.findAll(user);
+        float total = 0;
+        for (Reservation r : items) {
+            total += r.getTotalPrice();
+        }
+        session.setAttribute("items", items);
+        session.setAttribute("total", total);
+        List<Equipment> equipmentList = equipmentDAO.findAll();
+        session.setAttribute("equipmentList", equipmentList);
     }
 
     private void displayReservations(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,6 +138,49 @@ public class ServletReservation extends HttpServlet {
             case "reserve":
                 makeReservation(request, response);
                 break;
+
+            case "edit":
+                editItemRented(request, response);
+                break;
+        }
+    }
+
+    private void editItemRented(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        Date fDate = Date.valueOf(request.getParameter("fromDate"));
+        Date tDate = Date.valueOf(request.getParameter("toDate"));
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        Reservation item = (Reservation) session.getAttribute("item");
+        Connection conn = null;
+
+        try {
+            conn = MySQLConn.getConnection();
+            if (conn.getAutoCommit())
+                conn.setAutoCommit(false);
+            ReservationDAO reservationDAO = new ReservationImpl(conn);
+            EquipmentDAO equipmentDAO = new EquipmentImpl(conn);
+            item.setQuantity(quantity);
+            item.setFromDate(fDate);
+            item.setToDate(tDate);
+            reservationDAO.modify(item);
+            Equipment e = equipmentDAO.findOne(new Equipment(item.getIdEquipment()));
+            e.setInStock(e.getInStock() - quantity);
+            if (e.getInStock() <= 0) {
+                e.setInStock(0);
+                e.setAvailability(false);
+            }
+            prepareDao(session, user, conn, reservationDAO, equipmentDAO, e);
+            response.sendRedirect("pages/users/reservation.jsp");
+
+        } catch (ClassNotFoundException | SQLException e) {
+            try {
+                assert conn != null;
+                conn.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+            throw new RuntimeException(e);
         }
     }
 
@@ -90,17 +213,7 @@ public class ServletReservation extends HttpServlet {
                     item.setAvailability(false);
                     item.setInStock(0);
                 }
-                equipmentDAO.update(item);
-                conn.commit();
-                List<Reservation> items = reservationDAO.findAll(user);
-                float total = 0;
-                for (Reservation res : items) {
-                    total += res.getTotalPrice();
-                }
-                session.setAttribute("items", items);
-                session.setAttribute("total", total);
-                List<Equipment> equipmentList = equipmentDAO.findAll();
-                session.setAttribute("equipmentList", equipmentList);
+                prepareDao(session, user, conn, reservationDAO, equipmentDAO, item);
                 request.getRequestDispatcher("pages/users/main_page.jsp").forward(request, response);
             }
         } catch (ClassNotFoundException | SQLException e) {

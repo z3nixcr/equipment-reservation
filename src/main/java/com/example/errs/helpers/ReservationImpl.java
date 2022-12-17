@@ -27,7 +27,7 @@ public class ReservationImpl implements ReservationDAO {
             "WHERE r.id_user = ?";
     private static final String INSERT = "INSERT INTO reservation(id_user, id_equipment, quantity, from_date, to_date) " +
             " VALUES(?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE reservation SET from_date = ?, " +
+    private static final String UPDATE = "UPDATE reservation SET quantity = ?, from_date = ?, " +
             "to_date = ? WHERE id_reservation = ?";
     private static final String DELETE = "DELETE FROM reservation WHERE id_reservation = ?";
 
@@ -168,8 +168,10 @@ public class ReservationImpl implements ReservationDAO {
         try {
             conn = createConnection(connection);
             pstm = conn.prepareStatement(UPDATE);
-            pstm.setDate(1, reservation.getFromDate());
-            pstm.setDate(2, reservation.getToDate());
+            pstm.setInt(1, reservation.getQuantity());
+            pstm.setDate(2, reservation.getFromDate());
+            pstm.setDate(3, reservation.getToDate());
+            pstm.setInt(4, reservation.getIdReservation());
 
             pstm.executeUpdate();
         } finally {
