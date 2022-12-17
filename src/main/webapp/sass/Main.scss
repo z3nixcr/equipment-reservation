@@ -63,6 +63,10 @@ img {
 .ta-r {
   text-align: right;
 }
+header p.error1 {
+  font-size: 1.2rem;
+  color: #F05454;
+}
 
 /* Form Styles */
 .login-form, .register-form {
@@ -370,5 +374,84 @@ table.items-table {
     &:hover {
       fill: $orange;
     }
+  }
+}
+
+
+/* Admin Scope Styles */
+.admin-page-container {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.contents {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+
+  &__left {
+    background-color: $black;
+    padding: 4rem 0;
+    height: 100vh;
+    color: $grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &-top {
+      text-align: center;
+    }
+  }
+
+  &__right {
+    padding: 4rem;
+    h2 {
+      text-align: left;
+      color: #F05454;
+    }
+  }
+}
+.menu {
+  padding-top: 6rem;
+  div {
+    padding: 1rem;
+    transition: 1s all ease-in-out;
+    &:hover {
+      border-bottom: 1px solid $orange;
+    }
+  }
+}
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  padding-top: 5rem;
+}
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  background-color: $orange;
+  padding: 2rem;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  border-radius: 2rem;
+
+  &__img {
+    img {
+      width: 15rem;
+    }
+  }
+
+  &__desc {
+    background-color: $grey;
+    padding: 0 1rem;
+    font-size: 1.4rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    border-radius: 2rem;
   }
 }
