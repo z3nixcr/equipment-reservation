@@ -1,0 +1,316 @@
+/* Variables */
+$black: #222831;
+$black-grey: #393E46;
+$orange: #FD7014;
+$grey: #EEEEEE;
+$main-font: "Century Gothic", sans-serif;
+
+/* Globals */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+body {
+  font-family: $main-font;
+  font-size: 1.6rem;
+  line-height: 1.8;
+  margin: 0;
+}
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+  text-align: center;
+}
+img {
+  width: 7rem;
+}
+.container {
+  width: 95%;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+/* Utilities */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-link {
+  padding: 0.5rem;
+  width: 100%;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  border-radius: 2rem;
+  background-color: $black;
+}
+.link {
+  text-decoration: none;
+  color: $grey;
+  transition: .3s color;
+  &:hover {
+    color: $orange;
+  }
+}
+
+/* Form Styles */
+.login-form, .register-form {
+  input {
+    color: $black-grey;
+    padding: 1rem;
+    text-align: center;
+    border: none;
+    background-color: $grey;
+    -webkit-border-radius: .2rem;
+    -moz-border-radius: .2rem;
+    border-radius: .2rem;
+
+    &[type="submit"] {
+      cursor: pointer;
+      background-color: $black-grey;
+      color: $grey;
+      transition: .5s all ease-in-out;
+      &:hover {
+        background-color: $orange;
+        color: $black;
+      }
+    }
+  }
+}
+
+/* Login Styles */
+.main-container {
+  background-color: $black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dis-grid {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4rem;
+  text-align: center;
+}
+header.header {
+  color: $grey;
+  text-align: center;
+  span {
+    color: $orange;
+  }
+}
+main.content {
+  .reg-link {
+    text-align: right;
+    width: 79rem;
+  }
+  .login-form {
+    label {
+      padding: .5rem;
+      input {
+        width: 20rem;
+        &[type="submit"] {
+          width: 15rem;
+        }
+      }
+    }
+  }
+}
+
+/* Register Styles */
+.dis-flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .header {
+    padding-bottom: 4rem;
+  }
+}
+main.content {
+  .register-form {
+    label {
+      display: block;
+      &:not(:last-of-type) {
+        margin-bottom: 1rem;
+      }
+      input {
+        width: 40rem;
+      }
+    }
+  }
+}
+
+/* Link Styles */
+.log-link, .reg-link {
+  padding-top: 4rem;
+  a {
+    color: $grey;
+    text-decoration: none;
+    transition: .3s all ease-in-out;
+    &:hover {
+      color: $orange;
+    }
+  }
+}
+
+
+/* Main Page Style */
+div.parent-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+div.main-header-logo {
+  font-size: 2rem;
+  span {
+    color: $orange;
+  }
+}
+div.dis-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $grey;
+
+  .main-header-content {
+    display: flex;
+    a {
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-left: 2rem;
+      color: $grey;
+      transition: .3s color ease-in-out;
+
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
+}
+header.main-header {
+  display: flex;
+  align-items: center;
+  height: 10rem;
+  background-color: $black;
+}
+footer.main-footer {
+  padding-top: 2rem;
+  height: 15rem;
+  background-color: $black;
+  p {
+    text-align: left;
+    color: $grey;
+  }
+}
+main.main-content {
+  text-align: center;
+  padding: 2rem 0;
+  .content-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Card Style */
+div.card {
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  border-radius: 2rem;
+  width: 100%;
+  height: 20rem;
+  background-color: $orange;
+  padding: 2rem;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+
+  .card-img {
+    border-radius: 2rem;
+    background-color: $grey;
+    padding: 1rem 3rem;
+    //height: 20rem;
+    img {
+      //width: 7rem;
+      height: 7rem;
+      object-fit: cover;
+    }
+  }
+}
+.card-desc {
+  font-size: 1.2rem;
+  color: $grey;
+  .card-title {
+    font-weight: bold;
+    color: $black;
+  }
+}
+
+/* Add Item Styles */
+div.item-info {
+  display: grid;
+  grid-template-columns: 3fr 1.5fr;
+  gap: 1rem;
+
+  .item-img img {
+    width: 80%;
+  }
+}
+div.item-desc {
+  background-color: $black;
+  -webkit-border-radius: .4rem;
+  -moz-border-radius: .4rem;
+  border-radius: .4rem;
+  color: $grey;
+  font-size: 1.4rem;
+
+  .field {
+    color: $black;
+    background-color: $grey;
+    padding: 0.5rem 2rem;
+    text-align: left;
+    //-webkit-border-radius: .4rem;
+    //-moz-border-radius: .4rem;
+    //border-radius: .4rem;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  form {
+    padding: 2rem;
+    label {
+      display: block;
+    }
+    input {
+      border: none;
+      background-color: $black-grey;
+      -webkit-border-radius: .2rem;
+      -moz-border-radius: .2rem;
+      border-radius: .2rem;
+      width: 100%;
+      text-align: center;
+      padding: .3rem;
+      color: $grey;
+    }
+    input[type="submit"] {
+      cursor: pointer;
+      padding: 2rem;
+      margin-top: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      background-color: $orange;
+      color: $black-grey;
+      transition: .3s all ease-in-out;
+
+      &:hover {
+        color: $grey;
+        background-color: $black-grey;
+      }
+    }
+  }
+}

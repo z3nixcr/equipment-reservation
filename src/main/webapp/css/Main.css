@@ -1,0 +1,304 @@
+/* Variables */
+/* Globals */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Century Gothic", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+  text-align: center;
+}
+
+img {
+  width: 7rem;
+}
+
+.container {
+  width: 95%;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+/* Utilities */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-link {
+  padding: 0.5rem;
+  width: 100%;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  border-radius: 2rem;
+  background-color: #222831;
+}
+
+.link {
+  text-decoration: none;
+  color: #EEEEEE;
+  transition: 0.3s color;
+}
+.link:hover {
+  color: #FD7014;
+}
+
+/* Form Styles */
+.login-form input, .register-form input {
+  color: #393E46;
+  padding: 1rem;
+  text-align: center;
+  border: none;
+  background-color: #EEEEEE;
+  -webkit-border-radius: 0.2rem;
+  -moz-border-radius: 0.2rem;
+  border-radius: 0.2rem;
+}
+.login-form input[type=submit], .register-form input[type=submit] {
+  cursor: pointer;
+  background-color: #393E46;
+  color: #EEEEEE;
+  transition: 0.5s all ease-in-out;
+}
+.login-form input[type=submit]:hover, .register-form input[type=submit]:hover {
+  background-color: #FD7014;
+  color: #222831;
+}
+
+/* Login Styles */
+.main-container {
+  background-color: #222831;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dis-grid {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4rem;
+  text-align: center;
+}
+
+header.header {
+  color: #EEEEEE;
+  text-align: center;
+}
+header.header span {
+  color: #FD7014;
+}
+
+main.content .reg-link {
+  text-align: right;
+  width: 79rem;
+}
+main.content .login-form label {
+  padding: 0.5rem;
+}
+main.content .login-form label input {
+  width: 20rem;
+}
+main.content .login-form label input[type=submit] {
+  width: 15rem;
+}
+
+/* Register Styles */
+.dis-flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dis-flex-col .header {
+  padding-bottom: 4rem;
+}
+
+main.content .register-form label {
+  display: block;
+}
+main.content .register-form label:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+main.content .register-form label input {
+  width: 40rem;
+}
+
+/* Link Styles */
+.log-link, .reg-link {
+  padding-top: 4rem;
+}
+.log-link a, .reg-link a {
+  color: #EEEEEE;
+  text-decoration: none;
+  transition: 0.3s all ease-in-out;
+}
+.log-link a:hover, .reg-link a:hover {
+  color: #FD7014;
+}
+
+/* Main Page Style */
+div.parent-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+div.main-header-logo {
+  font-size: 2rem;
+}
+div.main-header-logo span {
+  color: #FD7014;
+}
+
+div.dis-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #EEEEEE;
+}
+div.dis-flex .main-header-content {
+  display: flex;
+}
+div.dis-flex .main-header-content a {
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-left: 2rem;
+  color: #EEEEEE;
+  transition: 0.3s color ease-in-out;
+}
+div.dis-flex .main-header-content a:hover {
+  color: #FD7014;
+}
+
+header.main-header {
+  display: flex;
+  align-items: center;
+  height: 10rem;
+  background-color: #222831;
+}
+
+footer.main-footer {
+  padding-top: 2rem;
+  height: 15rem;
+  background-color: #222831;
+}
+footer.main-footer p {
+  text-align: left;
+  color: #EEEEEE;
+}
+
+main.main-content {
+  text-align: center;
+  padding: 2rem 0;
+}
+main.main-content .content-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+}
+
+/* Card Style */
+div.card {
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  border-radius: 2rem;
+  width: 100%;
+  height: 20rem;
+  background-color: #FD7014;
+  padding: 2rem;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+}
+div.card .card-img {
+  border-radius: 2rem;
+  background-color: #EEEEEE;
+  padding: 1rem 3rem;
+}
+div.card .card-img img {
+  height: 7rem;
+  object-fit: cover;
+}
+
+.card-desc {
+  font-size: 1.2rem;
+  color: #EEEEEE;
+}
+.card-desc .card-title {
+  font-weight: bold;
+  color: #222831;
+}
+
+/* Add Item Styles */
+div.item-info {
+  display: grid;
+  grid-template-columns: 3fr 1.5fr;
+  gap: 1rem;
+}
+div.item-info .item-img img {
+  width: 80%;
+}
+
+div.item-desc {
+  background-color: #222831;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  border-radius: 0.4rem;
+  color: #EEEEEE;
+  font-size: 1.4rem;
+}
+div.item-desc .field {
+  color: #222831;
+  background-color: #EEEEEE;
+  padding: 0.5rem 2rem;
+  text-align: left;
+}
+div.item-desc .field:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+div.item-desc form {
+  padding: 2rem;
+}
+div.item-desc form label {
+  display: block;
+}
+div.item-desc form input {
+  border: none;
+  background-color: #393E46;
+  -webkit-border-radius: 0.2rem;
+  -moz-border-radius: 0.2rem;
+  border-radius: 0.2rem;
+  width: 100%;
+  text-align: center;
+  padding: 0.3rem;
+  color: #EEEEEE;
+}
+div.item-desc form input[type=submit] {
+  cursor: pointer;
+  padding: 2rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #FD7014;
+  color: #393E46;
+  transition: 0.3s all ease-in-out;
+}
+div.item-desc form input[type=submit]:hover {
+  color: #EEEEEE;
+  background-color: #393E46;
+}
+
+/*# sourceMappingURL=Main.css.map */
