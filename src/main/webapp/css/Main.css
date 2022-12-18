@@ -388,6 +388,20 @@ table.items-table .delete:hover {
 .contents__left-top {
   text-align: center;
 }
+.contents .title {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: #FD7014;
+}
+.contents .title .title-name {
+  text-transform: capitalize;
+  font-size: 2rem;
+  padding-top: 1rem;
+  color: #EEEEEE;
+}
+.contents .title .title-name span {
+  color: #FD7014;
+}
 .contents__right {
   padding: 4rem;
 }

@@ -1,7 +1,7 @@
 <div class="contents__left">
     <div class="contents__left-top">
         <div class="title">
-            <p><span>Zenedict</span> Res-Reservation <span>&circledR;</span></p>
+            <p class="title-name"><span>Zenedict</span> Res-Reservation <span>&circledR;</span></p>
             <p>System Dashboard</p>
         </div>
         <div class="menu">

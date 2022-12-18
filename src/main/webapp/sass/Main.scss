@@ -405,6 +405,20 @@ table.items-table {
       text-align: center;
     }
   }
+  .title {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: $orange;
+    .title-name {
+      text-transform: capitalize;
+      font-size: 2rem;
+      padding-top: 1rem;
+      color: $grey;
+      span {
+        color: $orange;
+      }
+    }
+  }
 
   &__right {
     padding: 4rem;

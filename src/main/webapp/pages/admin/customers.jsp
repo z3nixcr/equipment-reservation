@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Dashboard</title>
+    <title>Customers</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Main.css">
 </head>
 <body>
