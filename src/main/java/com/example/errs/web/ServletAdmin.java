@@ -1,8 +1,10 @@
 package com.example.errs.web;
 
 import com.example.errs.entities.Equipment;
+import com.example.errs.entities.Reservation;
 import com.example.errs.entities.User;
 import com.example.errs.helpers.EquipmentImpl;
+import com.example.errs.helpers.ReservationImpl;
 import com.example.errs.helpers.UserImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -31,7 +33,19 @@ public class ServletAdmin extends HttpServlet {
                     List<User> userList = new UserImpl().findAll();
                     userList.remove(0);
                     session.setAttribute("userList", userList);
+                    session.setAttribute("totalUsers", userList.size());
                     request.getRequestDispatcher("pages/admin/customers.jsp").forward(request, response);
+
+                case "bookings":
+                    List<Reservation> bookings = new ReservationImpl().findAll();
+                    float total = 0;
+                    for (Reservation r : bookings) {
+                        total += r.getTotalPrice();
+                    }
+                    session.setAttribute("bookings", bookings);
+                    session.setAttribute("totalPrice", total);
+                    request.getRequestDispatcher("pages/admin/bookings.jsp").forward(request, response);
+                    break;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

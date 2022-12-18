@@ -319,13 +319,17 @@ div.item-desc form input[type=submit]:hover {
 }
 
 /* Reservation Page Styles */
+.my-rents-container {
+  padding: 6rem;
+}
+
 table.items-table {
   width: 100%;
   padding: 4rem 0;
   border-collapse: collapse;
 }
 table.items-table thead tr th, table.items-table tfoot tr td {
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: center;
 }
 table.items-table tbody tr td {
@@ -387,9 +391,14 @@ table.items-table .delete:hover {
 .contents__right {
   padding: 4rem;
 }
-.contents__right h2 {
-  text-align: left;
-  color: #F05454;
+.contents__right p.title {
+  display: block;
+  color: #EEEEEE;
+  font-size: 4rem;
+  background-color: #222831;
+  -webkit-border-radius: 4rem;
+  -moz-border-radius: 4rem;
+  border-radius: 4rem;
 }
 
 .menu {

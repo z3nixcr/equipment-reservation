@@ -329,13 +329,16 @@ div.item-desc {
 }
 
 /* Reservation Page Styles */
+.my-rents-container {
+  padding: 6rem;
+}
 table.items-table {
   width: 100%;
   padding: 4rem 0;
   border-collapse: collapse;
 
   thead tr th, tfoot tr td {
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
   }
 
@@ -405,9 +408,14 @@ table.items-table {
 
   &__right {
     padding: 4rem;
-    h2 {
-      text-align: left;
-      color: #F05454;
+    p.title {
+      display: block;
+      color: $grey;
+      font-size: 4rem;
+      background-color: $black;
+      -webkit-border-radius: 4rem;
+      -moz-border-radius: 4rem;
+      border-radius: 4rem;
     }
   }
 }

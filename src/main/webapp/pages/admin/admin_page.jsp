@@ -8,26 +8,10 @@
 <body>
     <div class="admin-page-container">
         <div class="contents">
-            <div class="contents__left">
-                <div class="contents__left-top">
-                    <div class="title">
-                        <p><span>Zenedict</span> Res-Reservation <span>&circledR;</span></p>
-                        <p>System Dashboard</p>
-                    </div>
-                    <div class="menu">
-                        <div><a class="link" href="${pageContext.request.contextPath}/ServletAdmin?option=equipments">* EQUIPMENTS *</a></div>
-                        <div><a class="link" href="${pageContext.request.contextPath}/ServletAdmin?option=customers">* CUSTOMERS *</a></div>
-                        <div><a class="link" href="${pageContext.request.contextPath}/ServletAdmin?option=reservations">* RESERVATIONS *</a></div>
-                    </div>
-                </div>
-
-                <div class="contents__left-bottom">
-                    <a class="link" href="${pageContext.request.contextPath}/UserController?action=logout">Logout (${user.fullName})</a>
-                </div>
-            </div>
+            <jsp:include page="left_content.jsp"/>
 
             <div class="contents__right">
-                <h2>CURRENT EQUIPMENTS IN SYSTEM</h2>
+                <p class="title">CURRENT EQUIPMENTS IN SYSTEM</p>
                 <main class="main">
                     <c:forEach var="item" items="${equipmentList}">
                         <div class="product">

@@ -9,7 +9,7 @@
 <div class="parent-container">
   <jsp:include page="header.jsp"/>
 
-  <main class="main-content container">
+  <main class="main-content">
     <h1>Current items in my reservations</h1>
     <div class="my-rents-container">
       <c:if test="${items != null}">
